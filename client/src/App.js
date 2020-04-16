@@ -4,6 +4,7 @@ import About from "./components/About";
 import Profile from "./components/Profile";
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./app.scss";
 
 function App() {
   return (

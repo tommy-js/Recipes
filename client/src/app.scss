@@ -1,0 +1,65 @@
+@mixin testing {
+  border: 1px solid red;
+}
+
+body {
+  margin: 0;
+  height: 2000px;
+}
+
+.navbar_block {
+  position: fixed;
+  top: 0;
+  height: 40px;
+  background-color: teal;
+  width: 100%;
+  z-index: 99;
+}
+
+.main_body_block {
+  position: relative;
+  display: inline-block;
+  margin-top: 40px;
+  height: 100%;
+  width: 100%;
+}
+
+.navbar_link {
+  position: relative;
+  font-size: 18px;
+  color: black;
+  text-decoration: none;
+  margin-left: 40px;
+}
+
+.main_body_sidebar_container {
+  position: fixed;
+  display: inline-block;
+  height: 100%;
+  width: 25%;
+  background-color: blue;
+  @include testing;
+}
+
+.main_body_recipe_body_container {
+  position: absolute;
+  display: inline-block;
+  width: 50%;
+  height: auto;
+  margin: auto;
+  left: 0;
+  right: 0;
+  @include testing;
+}
+
+.information_area {
+  padding: 15px;
+}
+
+.main_body_search_container {
+  position: relative;
+  float: right;
+  width: 25%;
+  height: 100%;
+  @include testing;
+}

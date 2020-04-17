@@ -1,10 +1,11 @@
 @mixin testing {
-  border: 1px solid red;
+  // border: 1px solid red;
 }
 
 body {
   margin: 0;
-  height: 2000px;
+  // height: 4000px;
+  background-color: #eee;
 }
 
 .navbar_block {
@@ -37,8 +38,10 @@ body {
   display: inline-block;
   height: 100%;
   width: 25%;
-  background-color: blue;
-  @include testing;
+  // background-color: blue;
+  // @include testing;
+  z-index: 2;
+  border-right: 2.5px dashed pink;
 }
 
 .main_body_recipe_body_container {
@@ -49,17 +52,87 @@ body {
   margin: auto;
   left: 0;
   right: 0;
-  @include testing;
+  background-color: #f4eff3;
+  // @include testing;
 }
 
 .information_area {
-  padding: 15px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 85%;
+  height: 100%;
+  min-height: 100vh;
+  @include testing;
+}
+
+.item_searchbar::-webkit-input-placeholder {
+  color: #ff90e9;
+}
+
+.item_searchbar:-ms-input-placeholder {
+  color: #ff90e9;
+}
+
+.item_searchbar::placeholder {
+  color: #ff90e9;
+}
+
+.information_area_unloaded_inner {
+  text-align: center;
+}
+
+.item_searchbar {
+  height: 30px;
+  width: 120px;
+  padding: 4px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: none;
 }
 
 .main_body_search_container {
-  position: relative;
-  float: right;
+  position: fixed;
+  right: 0;
   width: 25%;
   height: 100%;
+  border-left: 2.5px dashed pink;
+  z-index: 2;
+  @include testing;
+}
+
+.side_searchbar {
+  position: relative;
+  margin: 20px;
+  @include testing;
+  width: 80%;
+  height: 90%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button.search_maximum_number {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"].search_maximum_number {
+  -moz-appearance: textfield;
+}
+
+.search_maximum_number {
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  font-size: 22px;
+}
+
+.left_sidebar {
+  position: relative;
+  float: right;
+  margin: 20px;
+  width: 40%;
+  min-width: 200px;
+  height: 90%;
   @include testing;
 }

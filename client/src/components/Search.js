@@ -5,6 +5,7 @@ import "../app.scss";
 function Search() {
   const [searchParam, setSearchParam] = useState("");
   const [items, setItem] = useState([]);
+  const [updater, setUpdater] = useState(false);
 
   const obj = [
     {
@@ -41,6 +42,7 @@ function Search() {
     let found = items.indexOf(findObj);
     items.splice(found, 1);
     setItem(items);
+    setUpdater(!updater);
   }
 
   function submittedItem(e) {
@@ -49,9 +51,10 @@ function Search() {
   }
 
   return (
-    <div>
+    <div className="side_searchbar">
       <form onSubmit={submittedItem}>
         <input
+          className="item_searchbar"
           type="text"
           placeholder="search"
           value={searchParam}

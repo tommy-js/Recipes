@@ -3,7 +3,7 @@ import "../app.scss";
 
 function Sidebar() {
   return (
-    <div>
+    <div className="left_sidebar">
       <h2>Sidebar</h2>
     </div>
   );

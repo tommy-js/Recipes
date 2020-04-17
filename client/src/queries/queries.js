@@ -48,7 +48,7 @@ const addItem = gql`
   }
 `;
 
-const addRecipe = gql`
+const addRecipeMutation = gql`
   mutation($name: String!, $id: ID!, $content: String!) {
     addRecipe(name: $name, id: $id, content: $content) {
       name
@@ -64,5 +64,5 @@ export {
   addItem,
   getRecipes,
   getRecipeQuery,
-  addRecipe
+  addRecipeMutation
 };

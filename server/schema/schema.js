@@ -1,7 +1,7 @@
-let lodash = require("lodash");
-let graphql = require("graphql");
-let Item = require("../models/items");
-let Recipe = require("../models/recipe");
+const lodash = require("lodash");
+const graphql = require("graphql");
+const Item = require("../models/items");
+const Recipe = require("../models/recipe");
 
 const {
   GraphQLObjectType,
@@ -88,7 +88,7 @@ const Mutation = new GraphQLObjectType({
     addRecipe: {
       type: RecipeType,
       args: {
-        name: { type: GraphQLNonNull(GraphQLString) },
+        name: { type: new GraphQLNonNull(GraphQLString) },
         id: { type: GraphQLID },
         content: { type: GraphQLNonNull(GraphQLString) }
       },

@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import SearchItem from "./SearchItem";
 import "../app.scss";
+import { gql } from "apollo-boost";
+import { graphql, Query } from "react-apollo";
+import { flowRight as compose } from "lodash";
+import { getItemsQuery } from "../queries/queries";
 
 function Search() {
   const [searchParam, setSearchParam] = useState("");
@@ -72,8 +76,26 @@ function Search() {
           />
         ))}
       </div>
+      <div>
+        <Query query={getItemsQuery}>
+          {({ loading, data }) => {
+            if (loading) {
+              return "Loading";
+            } else {
+              const { items } = data;
+              {
+                items.map(item => {
+                  return <p>{item.name}</p>;
+                });
+              }
+            }
+          }}
+        </Query>
+      </div>
     </div>
   );
 }
 
-export default Search;
+export default compose(graphql(getItemsQuery, { name: "getItemsQuery" }))(
+  Search
+);

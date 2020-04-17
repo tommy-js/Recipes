@@ -1,3 +1,5 @@
+$purple_Color: #ba4aff;
+
 @mixin testing {
   border: 1px solid red;
 }
@@ -6,6 +8,7 @@ body {
   margin: 0;
   // height: 4000px;
   background-color: #eee;
+  font-family: "Roboto", sans-serif;
 }
 
 .navbar_block {
@@ -170,7 +173,50 @@ input[type="number"].search_maximum_number {
 .recipe_content {
   position: relative;
   width: 80%;
+  line-height: 165%;
   font-size: 18px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.recipe_interaction_bar {
+  position: relative;
+  width: 80%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  @include testing;
+}
+
+.like_button {
+  position: absolute;
+  height: 35px;
+  width: 35px;
+}
+
+.share_button {
+  position: absolute;
+  height: 35px;
+  width: 35px;
+}
+
+.background_white {
+  background-color: white;
+  width: 35px;
+  transition: 0.3s;
+}
+
+.button_item {
+  position: relative;
+  display: inline-block;
+  margin: 5px;
+  height: 35px;
+  width: 35px;
+  overflow: hidden;
+  cursor: pointer;
+  @include testing;
+}
+
+.button_item:hover .background_white {
+  transition: 0.3s;
 }

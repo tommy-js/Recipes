@@ -1,5 +1,5 @@
 @mixin testing {
-  // border: 1px solid red;
+  border: 1px solid red;
 }
 
 body {
@@ -135,4 +135,42 @@ input[type="number"].search_maximum_number {
   min-width: 200px;
   height: 90%;
   @include testing;
+}
+
+.recipe_component {
+  position: relative;
+  height: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  @include testing;
+}
+
+.recipe_image_container {
+  position: relative;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 25vw;
+  overflow: hidden;
+  @include testing;
+}
+
+.recipe_image {
+  width: 100%;
+}
+
+.recipe_header {
+  position: relative;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  @include testing;
+}
+
+.recipe_content {
+  position: relative;
+  width: 80%;
+  font-size: 18px;
+  margin-left: auto;
+  margin-right: auto;
 }

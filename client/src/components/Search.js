@@ -4,34 +4,16 @@ import "../app.scss";
 import { gql } from "apollo-boost";
 import { graphql, Query } from "react-apollo";
 import { flowRight as compose } from "lodash";
-import { getItemsQuery } from "../queries/queries";
+import { getItems } from "../queries/queries";
 
 function Search() {
   const [searchParam, setSearchParam] = useState("");
   const [items, setItem] = useState([]);
+  const [sentItems, setSentItems] = useState([]);
   const [updater, setUpdater] = useState(false);
 
-  const obj = [
-    {
-      name: "shrimp",
-      id: 0
-    },
-    {
-      name: "apple",
-      id: 1
-    },
-    {
-      name: "pear",
-      id: 2
-    },
-    {
-      name: "lettuce",
-      id: 3
-    }
-  ];
-
   function searchObj(searchVal) {
-    let searchedObj = obj.find(el => el.name === searchVal);
+    let searchedObj = sentItems.find(el => el.name === searchVal);
     if (searchedObj) {
       setItem(prev => [...prev, { name: searchVal, id: searchedObj.id }]);
       setSearchParam("");
@@ -76,26 +58,19 @@ function Search() {
           />
         ))}
       </div>
-      <div>
-        <Query query={getItemsQuery}>
-          {({ loading, data }) => {
-            if (loading) {
-              return "Loading";
-            } else {
-              const { items } = data;
-              {
-                items.map(item => {
-                  return <p>{item.name}</p>;
-                });
-              }
-            }
-          }}
-        </Query>
-      </div>
+      <Query query={getItems}>
+        {({ loading, data }) => {
+          if (loading) {
+            return "Loading";
+          } else {
+            const { items } = data;
+            setSentItems(items);
+            return null;
+          }
+        }}
+      </Query>
     </div>
   );
 }
 
-export default compose(graphql(getItemsQuery, { name: "getItemsQuery" }))(
-  Search
-);
+export default compose(graphql(getItems, { name: "getItems" }))(Search);

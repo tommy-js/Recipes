@@ -4,14 +4,14 @@ import Sidebar from "./Sidebar";
 import Search from "./Search";
 import "../app.scss";
 
-function MainBody() {
+function MainBody(props) {
   return (
     <div className="main_body_block">
       <div className="main_body_sidebar_container">
         <Sidebar />
       </div>
       <div className="main_body_recipe_body_container">
-        <RecipeBody />
+        <RecipeBody modedRecipes={props.modedRecipes} />
       </div>
       <div className="main_body_search_container">
         <Search />

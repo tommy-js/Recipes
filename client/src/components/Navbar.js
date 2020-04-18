@@ -8,11 +8,11 @@ function Navbar() {
       <Link className="navbar_link" to="/">
         Home
       </Link>
-      <Link className="navbar_link" to="/about">
-        About
-      </Link>
       <Link className="navbar_link" to="/profile">
         Profile
+      </Link>
+      <Link className="navbar_link" to="/about">
+        About
       </Link>
     </div>
   );

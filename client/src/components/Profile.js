@@ -1,12 +1,14 @@
 import React from "react";
-import RecipeUpload from "./RecipeUpload";
+import { Link } from "react-router-dom";
+import History from "./History";
 
 function Profile() {
   return (
     <div>
       <p>Your Profile</p>
       <div>
-        <RecipeUpload />
+        <Link to="/upload">Upload recipe</Link>
+        <History />
       </div>
     </div>
   );

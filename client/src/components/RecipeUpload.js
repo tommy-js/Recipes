@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../app.scss";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
 import { flowRight as compose } from "lodash";
 import { addRecipeMutation } from "../queries/queries";
+import { IndividualContext } from "../App";
 
 function RecipeUpload(props) {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [type, setType] = useState("");
+
+  const { userData, setUserData } = useContext(IndividualContext);
 
   function submitForm(e) {
     e.preventDefault();
@@ -17,7 +20,8 @@ function RecipeUpload(props) {
         name: title,
         id: Math.floor(Math.random() * 10000000),
         content: text,
-        type: type
+        type: type,
+        submitter: userData.name
       }
     });
   }
@@ -32,7 +36,6 @@ function RecipeUpload(props) {
         <div className="image_upload_form" onClick={submitImage}>
           +
         </div>
-        "
         <input
           className="upload_form_title"
           type="text"

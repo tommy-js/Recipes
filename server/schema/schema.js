@@ -50,7 +50,7 @@ const RootQuery = new GraphQLObjectType({
       }
     },
     users: {
-      type: UserType,
+      type: new GraphQLList(UserType),
       args: { username: { type: GraphQLString } },
       resolve(parent, args) {
         return User.find({});

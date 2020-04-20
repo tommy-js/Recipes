@@ -8,6 +8,7 @@ import { addRecipeMutation } from "../queries/queries";
 function RecipeUpload(props) {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
+  const [type, setType] = useState("");
 
   function submitForm(e) {
     e.preventDefault();
@@ -15,7 +16,8 @@ function RecipeUpload(props) {
       variables: {
         name: title,
         id: Math.floor(Math.random() * 10000000),
-        content: text
+        content: text,
+        type: type
       }
     });
   }
@@ -30,12 +32,21 @@ function RecipeUpload(props) {
         <div className="image_upload_form" onClick={submitImage}>
           +
         </div>
+        "
         <input
           className="upload_form_title"
           type="text"
           onChange={e => setTitle(e.target.value)}
           placeholder="Recipe name..."
         />
+        <div className="recipe_type_input_container">
+          <input
+            onChange={e => setType(e.target.value)}
+            className="recipe_type_input"
+            type="text"
+            placeholder="Appetizer, desert, snack, lunch, etc..."
+          />
+        </div>
         <textarea
           className="upload_form_content"
           placeholder="Instructions"

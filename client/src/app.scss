@@ -1,4 +1,6 @@
 $purple_Color: #ba4aff;
+$pink_Color: #ff90e9;
+$green_Color: #3cf50a;
 
 @mixin testing {
   border: 1px solid red;
@@ -366,4 +368,47 @@ input[type="number"].search_maximum_number {
 .about_text_block {
   font-size: 18px;
   line-height: 165%;
+}
+
+.recipe_type_input_container {
+  width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+  // @include testing;
+}
+
+.recipe_type_input {
+  position: relative;
+  display: inline-block;
+  left: 0;
+  height: auto;
+  width: 300px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  margin-top: 25px;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.recipe_type_input:focus {
+  border: 1px solid $purple_Color;
+  transition: 0.3s;
+}
+
+.add_recipe_type_button {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  text-align: center;
+  display: inline-block;
+}
+
+.login_page {
+  position: relative;
+  width: 500px;
+  top: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  @include testing;
 }

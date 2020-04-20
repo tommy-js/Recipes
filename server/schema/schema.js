@@ -2,6 +2,7 @@ const lodash = require("lodash");
 const graphql = require("graphql");
 const Item = require("../models/items");
 const Recipe = require("../models/recipe");
+const User = require("../models/user");
 
 const {
   GraphQLObjectType,
@@ -11,6 +12,14 @@ const {
   GraphQLNonNull,
   GraphQLList
 } = graphql;
+
+const UserType = new GraphQLObjectType({
+  name: "User",
+  fields: () => ({
+    username: { type: GraphQLString },
+    password: { type: GraphQLString }
+  })
+});
 
 const ItemType = new GraphQLObjectType({
   name: "Item",
@@ -25,13 +34,28 @@ const RecipeType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
-    content: { type: GraphQLString }
+    content: { type: GraphQLString },
+    type: { type: GraphQLString }
   })
 });
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
   fields: {
+    user: {
+      type: UserType,
+      args: { username: { type: GraphQLString } },
+      resolve(parent, args) {
+        return User.find({ username: args.username });
+      }
+    },
+    users: {
+      type: UserType,
+      args: { username: { type: GraphQLString } },
+      resolve(parent, args) {
+        return User.find({});
+      }
+    },
     item: {
       type: ItemType,
       args: { id: { type: GraphQLID } },
@@ -71,6 +95,20 @@ const RootQuery = new GraphQLObjectType({
 const Mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
+    addUser: {
+      type: UserType,
+      args: {
+        username: { type: GraphQLString },
+        password: { type: GraphQLString }
+      },
+      resolve(parent, args) {
+        let newUser = new User({
+          username: args.username,
+          password: args.password
+        });
+        return newUser.save();
+      }
+    },
     addItem: {
       type: ItemType,
       args: {
@@ -90,13 +128,15 @@ const Mutation = new GraphQLObjectType({
       args: {
         name: { type: new GraphQLNonNull(GraphQLString) },
         id: { type: GraphQLID },
-        content: { type: GraphQLNonNull(GraphQLString) }
+        content: { type: GraphQLNonNull(GraphQLString) },
+        type: { type: GraphQLNonNull(GraphQLString) }
       },
       resolve(parent, args) {
         let newRecipe = new Recipe({
           name: args.name,
           id: args.id,
-          content: args.content
+          content: args.content,
+          type: args.type
         });
         return newRecipe.save();
       }

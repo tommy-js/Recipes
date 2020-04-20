@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import MainBody from "./components/MainBody";
 import About from "./components/About";
 import Profile from "./components/Profile";
 import Navbar from "./components/Navbar";
+import LoginPage from "./components/LoginPage";
 import RecipeComponent from "./components/RecipeComponent";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ApolloProvider } from "react-apollo";
@@ -13,8 +14,11 @@ const client = new ApolloClient({
   uri: "http://localhost:5000/graphql"
 });
 
+export const UserContext = createContext(null);
+
 function App() {
   const [recipes, setRecipes] = useState([]);
+  const [signinState, setSigninState] = useState(false);
 
   function modedRecipes(passedRecipes) {
     setRecipes(passedRecipes);
@@ -22,28 +26,33 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <Router>
-        <div className="App">
-          <Navbar />
-          <Route exact path="/">
-            <MainBody modedRecipes={modedRecipes} />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/profile">
-            <Profile />
-          </Route>
-          {recipes.map(recipeArray => (
-            <Route path={"/" + recipeArray.id}>
-              <RecipeComponent
-                name={recipeArray.name}
-                content={recipeArray.content}
-              />
+      <UserContext.Provider value={signinState}>
+        <Router>
+          <div className="App">
+            <Navbar />
+            <Route exact path="/">
+              <MainBody modedRecipes={modedRecipes} />
             </Route>
-          ))}
-        </div>
-      </Router>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/profile">
+              <Profile />
+            </Route>
+            {recipes.map(recipeArray => (
+              <Route path={"/" + recipeArray.id}>
+                <RecipeComponent
+                  name={recipeArray.name}
+                  content={recipeArray.content}
+                />
+              </Route>
+            ))}
+            <Route>
+              <LoginPage />
+            </Route>
+          </div>
+        </Router>
+      </UserContext.Provider>
     </ApolloProvider>
   );
 }

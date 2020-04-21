@@ -2,10 +2,11 @@ import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
 
 const addUserMutation = gql`
-  mutation($username: String!, $password: String!) {
-    addUser(username: $username, password: $password) {
+  mutation($username: String!, $password: String!, $salt: String!) {
+    addUser(username: $username, password: $password, salt: $salt) {
       username
       password
+      salt
     }
   }
 `;

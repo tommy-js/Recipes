@@ -6,11 +6,19 @@ import "../app.scss";
 function Navbar() {
   const { signinState, setSigninState } = useContext(UserContext);
 
+  function logOut() {
+    setSigninState(false);
+    if (localStorage.getItem("USERNAME") && localStorage.getItem("PASSWORD")) {
+      localStorage.removeItem("USERNAME");
+      localStorage.removeItem("PASSWORD");
+    }
+  }
+
   function changeState() {
     if (signinState) {
       return (
         <div style={{ display: "inline-block" }}>
-          <div onClick={() => setSigninState(false)} className="navbar_link">
+          <div onClick={logOut} className="navbar_link">
             Log out
           </div>
           <Link className="navbar_link" to="/profile">

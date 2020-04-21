@@ -17,7 +17,8 @@ const UserType = new GraphQLObjectType({
   name: "User",
   fields: () => ({
     username: { type: GraphQLString },
-    password: { type: GraphQLString }
+    password: { type: GraphQLString },
+    salt: { type: GraphQLString }
   })
 });
 
@@ -99,12 +100,14 @@ const Mutation = new GraphQLObjectType({
       type: UserType,
       args: {
         username: { type: GraphQLString },
-        password: { type: GraphQLString }
+        password: { type: GraphQLString },
+        salt: { type: GraphQLString }
       },
       resolve(parent, args) {
         let newUser = new User({
           username: args.username,
-          password: args.password
+          password: args.password,
+          salt: args.salt
         });
         return newUser.save();
       }

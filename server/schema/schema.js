@@ -10,7 +10,8 @@ const {
   GraphQLString,
   GraphQLSchema,
   GraphQLNonNull,
-  GraphQLList
+  GraphQLList,
+  GraphQLInputObjectType
 } = graphql;
 
 const UserType = new GraphQLObjectType({
@@ -36,6 +37,7 @@ const RecipeType = new GraphQLObjectType({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
     content: { type: GraphQLString },
+    ingredients: { type: GraphQLList(GraphQLInputObjectType) },
     type: { type: GraphQLString }
   })
 });
@@ -132,6 +134,7 @@ const Mutation = new GraphQLObjectType({
         name: { type: new GraphQLNonNull(GraphQLString) },
         id: { type: GraphQLID },
         content: { type: GraphQLNonNull(GraphQLString) },
+        ingredients: { type: GraphQLList(GraphQLInputObjectType) },
         type: { type: GraphQLNonNull(GraphQLString) }
       },
       resolve(parent, args) {
@@ -139,6 +142,7 @@ const Mutation = new GraphQLObjectType({
           name: args.name,
           id: args.id,
           content: args.content,
+          ingredients: args.ingredients,
           type: args.type
         });
         return newRecipe.save();

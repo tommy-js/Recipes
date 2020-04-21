@@ -35,6 +35,7 @@ const getRecipeQuery = gql`
       id
       name
       content
+      ingredients
       type
     }
   }
@@ -46,6 +47,7 @@ const getRecipes = gql`
       id
       name
       content
+      ingredients
       type
     }
   }
@@ -79,11 +81,24 @@ const addItem = gql`
 `;
 
 const addRecipeMutation = gql`
-  mutation($name: String!, $id: ID!, $content: String!, $type: String!) {
-    addRecipe(name: $name, id: $id, content: $content, type: $type) {
+  mutation(
+    $name: String!
+    $id: ID!
+    $content: String!
+    $type: String!
+    $ingredients: [String!]
+  ) {
+    addRecipe(
+      name: $name
+      id: $id
+      content: $content
+      type: $type
+      ingredients: $ingredients
+    ) {
       name
       id
       content
+      ingredients
       type
     }
   }

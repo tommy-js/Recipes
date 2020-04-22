@@ -102,11 +102,12 @@ function RecipeComponent(props) {
         />
       </div>
       <h2 className="recipe_header">{props.name}</h2>
+      <h3 className="recipe_header">{props.user}</h3>
       {setRecipeBar()}
       <h3 className="recipe_header">Directions</h3>
       <div className="recipe_ingredients">
         <h3 className="recipe_ingredient_header">Ingredients</h3>
-        <h4>shrimp</h4>
+        <h4>{props.ingredients}</h4>
       </div>
       <p className="recipe_content">{props.content}</p>
     </div>

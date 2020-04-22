@@ -68,6 +68,8 @@ function App() {
                   <RecipeComponent
                     name={recipeArray.name}
                     content={recipeArray.content}
+                    user={recipeArray.user}
+                    ingredients={recipeArray.ingredients}
                   />
                 </Route>
               ))}

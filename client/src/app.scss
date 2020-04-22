@@ -3,7 +3,7 @@ $pink_Color: #ff90e9;
 $green_Color: #3cf50a;
 
 @mixin testing {
-  border: 1px solid red;
+  // border: 1px solid red;
 }
 
 a:link {
@@ -188,6 +188,7 @@ input[type="number"].search_maximum_number {
   margin-right: auto;
   margin-top: 25px;
   transition: 0.3s;
+  border-bottom: 1px solid #dfdfdf;
   @include testing;
 }
 
@@ -459,9 +460,57 @@ input[type="number"].search_maximum_number {
 
 .login_page {
   position: relative;
-  width: 500px;
+  width: 300px;
   top: 200px;
   margin-left: auto;
   margin-right: auto;
   @include testing;
+}
+
+.input_button_block {
+  position: relative;
+  width: 200px;
+  height: 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid transparent;
+  font-size: 16px;
+  padding: 5px;
+  border-radius: 2px;
+  margin-top: 5px;
+  transition: 0.3s;
+}
+
+.input_button_block:focus {
+  border: 1px solid $purple_Color;
+  transition: 0.3s;
+}
+
+.sign_in_block {
+  position: relative;
+  width: 100%;
+  @include testing;
+  text-align: center;
+}
+
+.input_checkbox_block {
+  position: relative;
+}
+
+.save_signin {
+  position: relative;
+  width: 105px;
+  margin-left: auto;
+  margin-right: auto;
+  @include testing;
+}
+
+.signin_button {
+  position: relative;
+  width: 100px;
+  display: block;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }

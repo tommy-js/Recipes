@@ -80,60 +80,70 @@ function LoginPage(props) {
 
   return (
     <div className="login_page">
-      <h2>Sign up</h2>
+      <h2 className="sign_in_block">Sign up</h2>
       <form onSubmit={signUp}>
-        <label>Username</label>
         <input
           type="text"
           placeholder="username"
+          className="input_button_block"
           onChange={e => setUsername(e.target.value)}
         />
-        <label>Password</label>
+        <br />
         <input
           type="text"
           maxLength="60"
           placeholder="password"
+          className="input_button_block"
           onChange={e => setPassword(e.target.value)}
         />
-        <label>Save Login</label>
-        <input
-          type="checkbox"
-          checked={signUpState}
-          onChange={() => setSignUpState(!signUpState)}
-        />
-        <button>Bt</button>
+        <br />
+        <div className="save_signin">
+          <label>Save signin</label>
+          <input
+            type="checkbox"
+            className="input_checkbox_block"
+            checked={signUpState}
+            onChange={() => setSignUpState(!signUpState)}
+          />
+        </div>
+        <button className="signin_button">Sign up</button>
       </form>
-      <h2>Log in</h2>
+      <h2 className="sign_in_block">Log in</h2>
       <form onSubmit={logIn}>
-        <label>Username</label>
         <input
           type="text"
+          className="input_button_block"
           placeholder="username"
           onChange={e => setUsername(e.target.value)}
         />
-        <label>Password</label>
+        <br />
         <input
           type="text"
           maxLength="60"
+          className="input_button_block"
           placeholder="password"
           onChange={e => setPassword(e.target.value)}
         />
-        <label>Save Login</label>
-        <input
-          type="checkbox"
-          checked={loginState}
-          onChange={() => setLoginState(!loginState)}
-        />
-        <button>x</button>
+        <br />
+        <div className="save_signin">
+          <label>Save signin</label>
+          <input
+            type="checkbox"
+            className="input_checkbox_block"
+            checked={loginState}
+            onChange={() => setLoginState(!loginState)}
+          />
+        </div>
+        <button className="signin_button">Sign in</button>
       </form>
       <Query query={getUsers}>
         {({ loading, data }) => {
           if (loading) {
-            return "Loading";
+            return null;
           } else {
             const { users } = data;
             setUserList(users);
-            return "Loaded";
+            return null;
           }
         }}
       </Query>

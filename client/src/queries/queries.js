@@ -36,6 +36,7 @@ const getRecipeQuery = gql`
       name
       content
       ingredients
+      user
       type
     }
   }
@@ -48,6 +49,7 @@ const getRecipes = gql`
       name
       content
       ingredients
+      user
       type
     }
   }
@@ -86,19 +88,22 @@ const addRecipeMutation = gql`
     $id: ID!
     $content: String!
     $type: String!
-    $ingredients: [String!]
+    $user: String!
+    $ingredients: String!
   ) {
     addRecipe(
       name: $name
       id: $id
       content: $content
       type: $type
+      user: $user
       ingredients: $ingredients
     ) {
       name
       id
       content
       ingredients
+      user
       type
     }
   }

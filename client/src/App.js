@@ -26,10 +26,27 @@ export const IndividualContext = createContext(null);
 function App() {
   const [recipes, setRecipes] = useState([]);
   const [signinState, setSigninState] = useState(false);
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState("");
 
   function modedRecipes(passedRecipes) {
     setRecipes(passedRecipes);
+  }
+
+  function checkSignin() {
+    if (signinState) {
+      return (
+        <div>
+          <Route exact path="/upload">
+            <RecipeUpload />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 
   return (
@@ -45,9 +62,7 @@ function App() {
               <Route path="/about">
                 <About />
               </Route>
-              <Route path="/profile">
-                <Profile />
-              </Route>
+              {checkSignin()}
               {recipes.map(recipeArray => (
                 <Route path={"/" + recipeArray.id}>
                   <RecipeComponent
@@ -58,9 +73,6 @@ function App() {
               ))}
               <Route exact path="/Signin">
                 {signinState ? <Redirect to="/" /> : <LoginPage />}
-              </Route>
-              <Route exact path="/upload">
-                <RecipeUpload />
               </Route>
             </div>
           </Router>

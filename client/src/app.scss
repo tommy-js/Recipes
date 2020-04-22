@@ -285,6 +285,7 @@ input[type="number"].search_maximum_number {
   position: relative;
   width: 65%;
   min-width: 800px;
+  margin-top: 75px;
   height: auto;
   margin-left: auto;
   margin-right: auto;
@@ -298,9 +299,47 @@ input[type="number"].search_maximum_number {
   width: 400px;
   margin-left: auto;
   margin-right: auto;
-  cursor: pointer;
   text-align: center;
+  overflow: hidden;
   @include testing;
+}
+
+.image_upload_closure {
+  position: relative;
+  height: 100%;
+  top: 0;
+  width: 100%;
+  background-color: grey;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.header_image_recipe_upload {
+  position: absolute;
+  top: 20%;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  font-size: 22px;
+}
+
+.header_image {
+  position: absolute;
+  width: 100%;
+  cursor: pointer;
+  left: 0;
+}
+
+.input_button {
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+.image_upload_form:hover .image_upload_closure {
+  opacity: 0.6;
+  transition: 0.3s;
 }
 
 .upload_form_title {

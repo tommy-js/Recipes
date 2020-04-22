@@ -10,6 +10,7 @@ function RecipePreview(props) {
         />
       </div>
       <h2 className="recipe_header">{props.name}</h2>
+      <h3 className="recipe_header">{props.username}</h3>
     </div>
   );
 }

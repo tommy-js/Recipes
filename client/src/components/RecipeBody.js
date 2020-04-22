@@ -11,6 +11,8 @@ function RecipeBody(props) {
   const [recipe, setRecipe] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
+  console.log(recipe);
+
   useEffect(() => {
     props.modedRecipes(recipe);
   }, [recipe]);
@@ -22,7 +24,11 @@ function RecipeBody(props) {
           <div>
             {recipe.map(el => (
               <Link to={"/" + el.id}>
-                <RecipePreview name={el.name} content={el.content} />
+                <RecipePreview
+                  name={el.name}
+                  content={el.content}
+                  username={el.user}
+                />
               </Link>
             ))}
           </div>

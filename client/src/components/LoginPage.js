@@ -4,7 +4,7 @@ import { graphql, Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import { flowRight as compose } from "lodash";
 import { addUserMutation, getUsers } from "../queries/queries";
-import { UserContext } from "../App";
+import { UserContext, IndividualContext } from "../App";
 const bcrypt = require("bcryptjs");
 
 function LoginPage(props) {
@@ -12,8 +12,10 @@ function LoginPage(props) {
   const [password, setPassword] = useState("");
   const [userList, setUserList] = useState([]);
   const [loginState, setLoginState] = useState(false);
+  const [signUpState, setSignUpState] = useState(false);
 
   const { signinState, setSigninState } = useContext(UserContext);
+  const { userData, setUserData } = useContext(IndividualContext);
 
   useEffect(() => {
     let useName = localStorage.getItem("USERNAME");
@@ -45,8 +47,9 @@ function LoginPage(props) {
           salt: salt
         }
       });
+      setUserData({ name: username });
       setSigninState(true);
-      if (loginState) {
+      if (signUpState) {
         localStorage.setItem("USERNAME", username);
         localStorage.setItem("PASSWORD", password);
       }
@@ -64,6 +67,11 @@ function LoginPage(props) {
       if (checkPass) {
         console.log("signed in");
         setSigninState(true);
+        setUserData(username);
+        if (loginState) {
+          localStorage.setItem("USERNAME", username);
+          localStorage.setItem("PASSWORD", password);
+        }
       } else {
         console.log("incorrect");
       }
@@ -90,8 +98,8 @@ function LoginPage(props) {
         <label>Save Login</label>
         <input
           type="checkbox"
-          checked={loginState}
-          onChange={() => setLoginState(!loginState)}
+          checked={signUpState}
+          onChange={() => setSignUpState(!signUpState)}
         />
         <button>Bt</button>
       </form>
@@ -109,6 +117,12 @@ function LoginPage(props) {
           maxLength="60"
           placeholder="password"
           onChange={e => setPassword(e.target.value)}
+        />
+        <label>Save Login</label>
+        <input
+          type="checkbox"
+          checked={loginState}
+          onChange={() => setLoginState(!loginState)}
         />
         <button>x</button>
       </form>
